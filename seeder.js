@@ -1,11 +1,13 @@
 import { faker } from '@faker-js/faker';
 import mongoose from 'mongoose';
 import Book from './models/book.js';
-const conectionString = "";
+import "dotenv/config";
+const conectionString = process.env.conectionString;
 
 async function seedDb() {
   mongoose.connect(conectionString);
   const seededData = generateBooks(5);
+  console.log(seededData);
 }
 
 
