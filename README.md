@@ -5,7 +5,7 @@
 ## /api/books/{id} used to find a specifik book by id {id} is a Mongodb objectId
 
 ### Basic setup
-## To be able to run the server to get the api working you need to run "npm i express mongoose" in a terminal open in the root folder of the project to get the node_modules folder. when you have the node_modules folder you need to change the conectionString variable in server.js to your own conection string
+## To be able to run the server to get the api working you need to run "npm i express mongoose" in a terminal open in the root folder of the project to get the node_modules folder. when you have the node_modules folder you need to add a .env file that have a key named conectionString whit the value of your conection string
 
 ### Seedng the database
 ## Seeding the database is done by runing the seeder.js file
