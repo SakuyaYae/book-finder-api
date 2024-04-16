@@ -19,7 +19,9 @@ async function generateBooks(bookAmount) {
       "title": "History of " + faker.location.country(),
       "author": faker.person.fullName(),
       "genre": genreList[faker.number.int(6)],
-      "releaseDate": faker.date.past()
+      "releaseDate": faker.date.past(),
+      "info": faker.lorem.paragraph(),
+      "rating": faker.number.int({ min: 1, max: 5 }) + ""
     });
     bookList.push(book);
   }

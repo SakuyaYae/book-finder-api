@@ -34,7 +34,9 @@ export default function (server, mongoose) {
         "title": req.body.title,
         "author": req.body.author,
         "genre": req.body.genre,
-        "releaseDate": req.body.releaseDate
+        "releaseDate": req.body.releaseDate,
+        "info": req.body.info,
+        "rating": req.body.rating
       });
       const addedBook = await book.save();
       res.status(201).json([{ "msg": "book added:" }, addedBook]);
