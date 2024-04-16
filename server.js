@@ -1,12 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import router from "./router.js";
+import "dotenv/config";
 const server = express();
 
 const port = 4444;
 
 server.use(express.json());
-const conectionString = "";
+const conectionString = process.env.conectionString;
 
 mongoose.connect(conectionString);
 
