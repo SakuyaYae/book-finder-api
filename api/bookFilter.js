@@ -1,7 +1,7 @@
 import Book from "./../models/book.js";
 
 export default function (server) {
-  server.get("/api/filter/:title", async (req, res) => {
+  server.get("/api/filter/title/:title", async (req, res) => {
     try {
       const booksByName = await Book.find({ title: req.params.title });
 
@@ -21,7 +21,7 @@ export default function (server) {
     }
   });
 
-  server.get("/api/filter/:author", async (req, res) => {
+  server.get("/api/filter/author/:author", async (req, res) => {
     try {
       const booksByAuthor = await Book.find({ author: req.params.author });
 
@@ -32,7 +32,7 @@ export default function (server) {
         res.status(204).json({ "msg": "no content" })
       }
       else {
-        res.status(200).json([{ "msg": "OK" }, booksByName]);
+        res.status(200).json([{ "msg": "OK" }, booksByAuthor]);
       }
     }
     catch (error) {
@@ -41,9 +41,9 @@ export default function (server) {
     }
   });
 
-  server.get("/api/filter/:genre", async (req, res) => {
+  server.get("/api/filter/genre/:genre", async (req, res) => {
     try {
-      const booksByGenre = await Book.find({ author: req.params.genre });
+      const booksByGenre = await Book.find({ genre: req.params.genre });
 
       if (!booksByGenre) {
         res.status(404).json({ "msg": "Not found" })
@@ -52,7 +52,7 @@ export default function (server) {
         res.status(204).json({ "msg": "no content" })
       }
       else {
-        res.status(200).json([{ "msg": "OK" }, booksByName]);
+        res.status(200).json([{ "msg": "OK" }, booksByGenre]);
       }
     }
     catch (error) {
