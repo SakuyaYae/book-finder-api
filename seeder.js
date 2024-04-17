@@ -9,6 +9,8 @@ async function seedDb() {
   mongoose.connect(conectionString);
   const seededData = generateBooks(5);
   console.log(seededData);
+  saveBooks(await seededData);
+  console.log("seeding done");
 }
 
 
@@ -26,5 +28,20 @@ async function generateBooks(bookAmount) {
     bookList.push(book);
   }
   return bookList;
+}
+
+async function saveBooks(bookList = []) {
+  if (bookList.length == 0) {
+    console.log("No books to save");
+  }
+  else {
+    try {
+      for (var i = 0; i < bookList.length; i++) {
+        await bookList[i].save();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 seedDb();
