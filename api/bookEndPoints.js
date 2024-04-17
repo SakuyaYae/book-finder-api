@@ -1,6 +1,6 @@
 import Book from "./../models/book.js";
 
-export default function (server, mongoose) {
+export default function (server) {
 
   server.get("/api/books", async (req, res) => {
     try {
