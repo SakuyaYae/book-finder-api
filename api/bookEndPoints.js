@@ -1,3 +1,4 @@
+import e from "express";
 import Book from "./../models/book.js";
 
 export default function (server) {
@@ -19,8 +20,9 @@ export default function (server) {
       if (!selectedBook) {
         res.status(404).json({ "msg": "Not found" })
       }
-
-      res.status(200).json([{ "msg": "OK" }, selectedBook]);
+      else {
+        res.status(200).json([{ "msg": "OK" }, selectedBook]);
+      }
     }
     catch (error) {
       console.error(error);
@@ -30,16 +32,39 @@ export default function (server) {
 
   server.post("/api/books", async (req, res) => {
     try {
-      const book = new Book({
-        "title": req.body.title,
-        "author": req.body.author,
-        "genre": req.body.genre,
-        "releaseDate": req.body.releaseDate,
-        "info": req.body.info,
-        "rating": req.body.rating
-      });
-      const addedBook = await book.save();
-      res.status(201).json([{ "msg": "book added:" }, addedBook]);
+      if (req.body.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.title.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.author.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.genre.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.releaseDate.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.info.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.rating.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else {
+        const book = new Book({
+          "title": req.body.title,
+          "author": req.body.author,
+          "genre": req.body.genre,
+          "releaseDate": req.body.releaseDate,
+          "info": req.body.info,
+          "rating": req.body.rating
+        });
+        const addedBook = await book.save();
+        res.status(201).json([{ "msg": "book added:" }, addedBook]);
+      }
     }
     catch (error) {
       console.error(error);
@@ -49,12 +74,36 @@ export default function (server) {
 
   server.put("/api/books/:id", async (req, res) => {
     try {
-      const bookToUpdate = await Book.findByIdAndUpdate(req.params.id, req.body);
-      if (!bookToUpdate) {
-        res.status(404).json({ "msg": "Not found" })
-      };
-
-      res.status(200).json([{ "msg": "Book updated" }, authorToUpdate]);
+      if (req.body.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.title.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.author.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.genre.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.releaseDate.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.info.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (req.body.rating.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else {
+        const bookToUpdate = await Book.findByIdAndUpdate(req.params.id, req.body);
+        if (!bookToUpdate) {
+          res.status(404).json({ "msg": "Not found" });
+        }
+        else {
+          res.status(200).json([{ "msg": "Book updated" }, authorToUpdate]);
+        }
+      }
     }
     catch (error) {
       console.error(error);
@@ -65,8 +114,12 @@ export default function (server) {
   server.delete("/api/books/:id", async (req, res) => {
     try {
       const booksToDelete = await Book.findByIdAndDelete(req.params.id);
-      if (!booksToDelete) { res.status(404).json({ "msg": "Not found" }) }
-      res.status(204).json([{ "msg": "author deleted" }, authorToDelete]);
+      if (!booksToDelete) {
+        res.status(404).json({ "msg": "Not found" })
+      }
+      else {
+        res.status(204).json([{ "msg": "author deleted" }, authorToDelete]);
+      }
     }
     catch (error) {
       console.error(error);
