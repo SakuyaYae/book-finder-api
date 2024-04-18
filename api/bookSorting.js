@@ -6,7 +6,8 @@ export default function (server) {
       const booksSortedByTitle = await Book.find().sort({ title: 1 });
       if (booksSortedByTitle.length < 1) {
         res.status(204).json({ "msg": "no content" });
-      } else {
+      }
+      else {
         res.status(200).json([{ "msg": "OK" }, booksSortedByTitle]);
       }
     }
@@ -20,7 +21,8 @@ export default function (server) {
       const booksSortedByAuthor = await Book.find().sort({ author: 1 });
       if (booksSortedByAuthor.length < 1) {
         res.status(204).json({ "msg": "no content" });
-      } else {
+      }
+      else {
         res.status(200).json([{ "msg": "OK" }, booksSortedByAuthor]);
       }
     }
@@ -34,7 +36,8 @@ export default function (server) {
       const booksSortedByGenre = await Book.find().sort({ genre: 1 });
       if (booksSortedByGenre.length < 1) {
         res.status(204).json({ "msg": "no content" });
-      } else {
+      }
+      else {
         res.status(200).json([{ "msg": "OK" }, booksSortedByGenre]);
       }
     }
