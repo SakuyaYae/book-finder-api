@@ -1,4 +1,5 @@
-# book-finder-api
+#### book-finder-api
+
 ### Endpoints for books
 ## /api/books used to get all books
 ## /api/books/{id} used to find a specifik book by id, {id} is a Mongodb objectId.
@@ -20,4 +21,7 @@
 
 ### Seedng the database
 ## Seeding the database is done by runing the seeder.js file
-## keep in mind that the basic setup must have been done or you will get a error when running the seeder.js file
+## keep in mind that the basic setup must have been done or you will get a error when running the seeder.js file.
+
+### Cleanng the database
+## /api/cleaner as a deleate is used to empty the database 
