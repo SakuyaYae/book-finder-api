@@ -1,5 +1,5 @@
 import Book from "../models/book.js";
-export default function (server, mongoose) {
+export default function (server) {
   server.delete("/api/cleaner", async (req, res) => {
     try {
       const cleaner = await Book.deleteMany();
