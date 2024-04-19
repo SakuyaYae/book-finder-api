@@ -1,4 +1,3 @@
-import e from "express";
 import Book from "./../models/book.js";
 
 export default function (server) {
@@ -33,6 +32,9 @@ export default function (server) {
   server.post("/api/books", async (req, res) => {
     try {
       if (req.body.legth < 1) {
+        res.status(400).json({ "msg": "bad request" });
+      }
+      else if (!req.body.title || !req.body.author || !req.body.genre || !req.body.releaseDate || !req.body.info || !req.body.rating) {
         res.status(400).json({ "msg": "bad request" });
       }
       else if (req.body.title.legth < 1) {
@@ -77,6 +79,9 @@ export default function (server) {
       if (req.body.legth < 1) {
         res.status(400).json({ "msg": "bad request" });
       }
+      else if (!req.body.title || !req.body.author || !req.body.genre || !req.body.releaseDate || !req.body.info || !req.body.rating) {
+        res.status(400).json({ "msg": "bad request" });
+      }
       else if (req.body.title.legth < 1) {
         res.status(400).json({ "msg": "bad request" });
       }
@@ -101,7 +106,7 @@ export default function (server) {
           res.status(404).json({ "msg": "Not found" });
         }
         else {
-          res.status(200).json([{ "msg": "Book updated" }, authorToUpdate]);
+          res.status(200).json([{ "msg": "Book updated" }, bookToUpdate]);
         }
       }
     }
@@ -113,12 +118,12 @@ export default function (server) {
 
   server.delete("/api/books/:id", async (req, res) => {
     try {
-      const booksToDelete = await Book.findByIdAndDelete(req.params.id);
-      if (!booksToDelete) {
+      const bookToDelete = await Book.findByIdAndDelete(req.params.id);
+      if (!bookToDelete) {
         res.status(404).json({ "msg": "Not found" })
       }
       else {
-        res.status(204).json([{ "msg": "author deleted" }, authorToDelete]);
+        res.status(204).json([{ "msg": "author deleted" }, bookToDelete]);
       }
     }
     catch (error) {
