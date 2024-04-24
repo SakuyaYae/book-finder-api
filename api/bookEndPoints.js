@@ -4,7 +4,24 @@ export default function (server) {
 
   server.get("/api/books", async (req, res) => {
     try {
-      res.status(200).json(await Book.find());
+      var page;
+
+      if (req.query.page) {
+        page = parseInt(req.query.page);
+        const limit = 30;
+        const skip = (page - 1) * limit;
+        const totalBooks = await Book.countDocuments();
+        const returnedBooks = await Book.find().skip(skip).limit(limit);
+        const numberOfPages = parseInt(totalBooks / limit);
+
+        res.status(200).json({ returnedBooks, totalBooks, "booksPerPage": limit, "numberOfPages": numberOfPages, "currentPage": page });
+
+      }
+      else {
+        res.status(200).json(await Book.find());
+
+      }
+
     }
     catch (error) {
       console.error(error);
