@@ -31,7 +31,7 @@ export default function (server) {
 
   server.get("/api/books/:id", async (req, res) => {
     try {
-      const selectedBook = await Book.findById(req.params.id).populate('manga');
+      const selectedBook = await Book.findById(req.params.id);
 
       if (!selectedBook) {
         res.status(404).json({ "msg": "Not found" })
