@@ -7,7 +7,7 @@ const genreList = ["action", "adventure", "horror", "fantasy", "romance", "si-fi
 
 async function seedDb() {
   mongoose.connect(conectionString);
-  const seededData = generateBooks(50000);
+  const seededData = generateBooks(500);
   console.log(seededData);
   saveBooks(await seededData);
   console.log("seeding done");
