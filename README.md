@@ -26,3 +26,8 @@
 
 ### Cleanng the database
 ## /api/cleaner as a deleate is used to empty the database.
+
+### Database connection relateded API routs
+## /api/testing/connection/close
+## /api/testing/connection/open
+## /api/testing/connection/state
