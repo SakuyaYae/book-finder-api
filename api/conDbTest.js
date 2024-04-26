@@ -15,7 +15,7 @@ export default function (server, mongoose) {
       const conectionString = process.env.conectionString;
 
       mongoose.connect(conectionString);
-      res.status(200).json({ "msg": "connection state " + mongoose.connection.readyState });
+      res.status(200).json({ "msg": "connection open " });
     }
     catch (error) {
       console.error(error);
